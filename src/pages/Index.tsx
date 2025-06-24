@@ -69,7 +69,7 @@ const Index = () => {
               </div>
               <div>
                 <h1 className="text-4xl font-bold bg-gradient-to-r from-primary via-primary/80 to-primary bg-clip-text text-transparent">
-                  ChessMaster Pro
+                  ApnaChess
                 </h1>
                 <p className="text-sm text-muted-foreground mt-1">
                   Premium Chess Experience • {currentTheme.name} Theme
