@@ -1,0 +1,237 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  /**
+   * Tailwind CSS theme
+   * tailwind.config.ts expects the following color variables to be expressed as HSL values.
+   * A different format will require also updating the theme in tailwind.config.ts.
+  */
+  :root {
+    --background: 32 20% 8%;
+    --foreground: 38 32% 85%;
+
+    --card: 32 20% 10%;
+    --card-foreground: 38 32% 85%;
+
+    --popover: 32 20% 10%;
+    --popover-foreground: 38 32% 85%;
+
+    --primary: 38 60% 55%;
+    --primary-foreground: 32 20% 8%;
+
+    --secondary: 32 16% 15%;
+    --secondary-foreground: 38 32% 85%;
+
+    --muted: 32 16% 15%;
+    --muted-foreground: 38 16% 65%;
+
+    --accent: 38 40% 25%;
+    --accent-foreground: 38 32% 85%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 32 16% 20%;
+    --input: 32 16% 20%;
+    --ring: 38 60% 55%;
+
+    --radius: 0.5rem;
+
+    /* Chess-specific colors */
+    --chess-light: 38 35% 85%;
+    --chess-dark: 32 25% 25%;
+    --chess-border: 32 30% 15%;
+    --chess-selected: 45 100% 60%;
+    --chess-possible-move: 120 50% 50%;
+    --chess-possible-capture: 0 70% 55%;
+    --chess-lastmove: 45 80% 50%;
+    --chess-label: 38 20% 60%;
+    --chess-surface: 32 20% 12%;
+    --chess-accent: 38 50% 40%;
+    --chess-accent-foreground: 38 32% 85%;
+    --chess-foreground: 38 32% 85%;
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 25 15% 6%;
+    --foreground: 38 32% 90%;
+
+    --card: 25 15% 8%;
+    --card-foreground: 38 32% 90%;
+
+    --popover: 25 15% 8%;
+    --popover-foreground: 38 32% 90%;
+
+    --primary: 38 65% 60%;
+    --primary-foreground: 25 15% 6%;
+
+    --secondary: 25 12% 12%;
+    --secondary-foreground: 38 32% 90%;
+
+    --muted: 25 12% 12%;
+    --muted-foreground: 38 20% 70%;
+
+    --accent: 38 45% 20%;
+    --accent-foreground: 38 32% 90%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 25 12% 18%;
+    --input: 25 12% 18%;
+    --ring: 38 65% 60%;
+
+    /* Chess-specific colors for dark mode */
+    --chess-light: 38 40% 90%;
+    --chess-dark: 25 20% 20%;
+    --chess-border: 25 25% 12%;
+    --chess-selected: 45 100% 65%;
+    --chess-possible-move: 120 55% 55%;
+    --chess-possible-capture: 0 75% 60%;
+    --chess-lastmove: 45 85% 55%;
+    --chess-label: 38 25% 65%;
+    --chess-surface: 25 15% 10%;
+    --chess-accent: 38 55% 45%;
+    --chess-accent-foreground: 38 32% 90%;
+    --chess-foreground: 38 32% 90%;
+
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+@layer components {
+  /* Premium chess piece effects */
+  .chess-piece {
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .chess-piece:hover {
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+  }
+
+  .chess-piece.modern {
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+  }
+
+  .chess-piece.glass {
+    filter: drop-shadow(0 4px 16px rgba(59, 130, 246, 0.3));
+  }
+
+  .chess-piece.neon {
+    filter: drop-shadow(0 0 8px currentColor) drop-shadow(0 0 16px currentColor);
+  }
+
+  /* Premium board effects */
+  .chess-board-premium {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .chess-board-premium::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: conic-gradient(
+      from 0deg,
+      transparent,
+      rgba(255, 255, 255, 0.1),
+      transparent
+    );
+    animation: spin 8s linear infinite;
+    opacity: 0.3;
+    pointer-events: none;
+  }
+
+  /* Glass morphism effects */
+  .glass-morph {
+    backdrop-filter: blur(16px);
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+
+  /* Neon glow text */
+  .neon-text {
+    text-shadow:
+      0 0 5px currentColor,
+      0 0 10px currentColor,
+      0 0 15px currentColor,
+      0 0 20px currentColor;
+  }
+
+  /* Premium card hover */
+  .premium-card {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .premium-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  }
+}
+
+@layer utilities {
+  /* Scrollbar styling */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Background patterns */
+  .bg-pattern-chess {
+    background-image:
+      radial-gradient(
+        circle at 25% 25%,
+        rgba(255, 255, 255, 0.1) 0%,
+        transparent 50%
+      ),
+      radial-gradient(
+        circle at 75% 75%,
+        rgba(255, 255, 255, 0.1) 0%,
+        transparent 50%
+      );
+    background-size: 40px 40px;
+  }
+}
