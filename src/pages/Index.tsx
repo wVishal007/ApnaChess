@@ -339,7 +339,7 @@ const Index = () => {
             <div className="flex items-center justify-center gap-2 mb-3">
               <Crown className="w-5 h-5 text-primary" />
               <span className="font-semibold text-primary">
-                ChessMaster Pro
+                ApnaChess
               </span>
               <Sparkles className="w-4 h-4 text-yellow-400" />
             </div>
